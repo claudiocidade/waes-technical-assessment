@@ -1,5 +1,5 @@
 ﻿// <copyright file="Program.cs" company="WAES">
-//  Copyright (c) WAES. All rights reserved.
+//  Copyright (c) All rights reserved.
 // </copyright>
 namespace TechnicalAssessment.WebApi
 {
@@ -23,7 +23,6 @@ namespace TechnicalAssessment.WebApi
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseApplicationInsights()
                 .Build();            
 
             host.Run();
