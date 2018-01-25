@@ -4,8 +4,8 @@
 namespace TechnicalAssessment.WebApi
 {
     using System.IO;
-    using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using TechnicalAssessment.WebApi.Configuration;
 
     /// <summary>
     /// Program runtime initialization class.
@@ -20,10 +20,10 @@ namespace TechnicalAssessment.WebApi
         {
             IWebHost host = new WebHostBuilder()
                 .UseKestrel()
+                .UseUrls(ApplicationConstants.ServiceUriAddress)
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
-                .Build();            
+                .Build();
 
             host.Run();
         }

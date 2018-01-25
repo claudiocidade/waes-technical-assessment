@@ -4,11 +4,8 @@
 namespace TechnicalAssessment.WebApi.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using TechnicalAssessment.Data;
-    using TechnicalAssessment.Data.Repositories;
     using TechnicalAssessment.Data.Repositories.Contracts;
     using TechnicalAssessment.Domain;
     using TechnicalAssessment.Domain.Builders;
@@ -23,7 +20,12 @@ namespace TechnicalAssessment.WebApi.Controllers
     [Route("diff")]
     public class DiffController : Controller
     {
-        private readonly ISessionRepository sessionRepository = new SessionRepository(DatabaseClient.Create());
+        private readonly ISessionRepository sessionRepository;
+
+        public DiffController(ISessionRepository sessionRepository)
+        {
+            this.sessionRepository = sessionRepository;
+        }
 
         /// <summary>
         /// Sets the message for the comparison session left side.
@@ -33,13 +35,15 @@ namespace TechnicalAssessment.WebApi.Controllers
         /// <returns>Returns an instance of the <see cref="Task"/> representing the execution result.</returns>
         [HttpPost]
         [Route("{id}/left")]
-        public async Task Left(Guid id, Message message)
+        public async Task<ActionResult> Left([FromRoute]Guid id, [FromBody]Models.Message message)
         {
             SessionBuilder sessionBuilder = new SessionBuilder(await this.sessionRepository.Get(id.ToString()));
 
-            sessionBuilder.WithLeftSideMessage(new MessageBuilder(message));
+            sessionBuilder.WithLeftSideMessage(new MessageBuilder().WithData(message.Data));
 
             await this.sessionRepository.Save(sessionBuilder.Build());
+
+            return Ok(true);
         }
 
         /// <summary>
@@ -50,13 +54,15 @@ namespace TechnicalAssessment.WebApi.Controllers
         /// <returns>Returns an instance of the <see cref="Task"/> representing the execution result.</returns>
         [HttpPost]
         [Route("{id}/right")]
-        public async Task Right(Guid id, Message message)
+        public async Task<ActionResult> Right([FromRoute]Guid id, [FromBody]Models.Message message)
         {
             SessionBuilder sessionBuilder = new SessionBuilder(await this.sessionRepository.Get(id.ToString()));
 
-            sessionBuilder.WithRightSideMessage(new MessageBuilder(message));
+            sessionBuilder.WithRightSideMessage(new MessageBuilder().WithData(message.Data));
 
             await this.sessionRepository.Save(sessionBuilder.Build());
+
+            return Ok(true);
         }
 
         /// <summary>
@@ -66,13 +72,13 @@ namespace TechnicalAssessment.WebApi.Controllers
         /// <returns>Returns an instance of the <see cref="Task"/> representing the execution result.</returns>
         [HttpGet]
         [Route("{id}")]
-        public async Task<string> Get(Guid id)
+        public async Task<ActionResult> Get([FromRoute]Guid id)
         {
             Session existingSession = await this.sessionRepository.Get(id.ToString());
 
             IMessageDomainService messageDomainService = new MessageDomainService();
 
-            return messageDomainService.AnalyzeMessages(existingSession.LeftSide, existingSession.RightSide);
+            return Ok(messageDomainService.AnalyzeMessages(existingSession.LeftSide, existingSession.RightSide));
         }
     }
 }

@@ -7,9 +7,9 @@ namespace TechnicalAssessment.Data
 
     public class DatabaseClient
     {
-        public static MongoClient Create()
+        public static MongoClient Create(string connectionString)
         {
-            return new MongoClient("mongodb+srv://admin:admin@cluster0-5snvo.mongodb.net/test");
+            return new MongoClient(connectionString);
         } 
     }
 }

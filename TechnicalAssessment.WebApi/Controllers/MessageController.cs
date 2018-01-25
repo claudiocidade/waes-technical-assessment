@@ -4,11 +4,8 @@
 namespace TechnicalAssessment.WebApi.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using TechnicalAssessment.Data;
-    using TechnicalAssessment.Data.Repositories;
     using TechnicalAssessment.Data.Repositories.Contracts;
     using TechnicalAssessment.Domain;
     using TechnicalAssessment.Domain.Builders;
@@ -23,7 +20,12 @@ namespace TechnicalAssessment.WebApi.Controllers
     [Route("message")]
     public class MessageController : Controller
     {
-        private readonly IMessageRepository messageRepository = new MessageRepository(DatabaseClient.Create());
+        private readonly IMessageRepository messageRepository;
+
+        public MessageController(IMessageRepository messageRepository)
+        {
+            this.messageRepository = messageRepository;
+        }
 
         /// <summary>
         /// Sets the message for later comparison.
@@ -32,20 +34,24 @@ namespace TechnicalAssessment.WebApi.Controllers
         /// <returns>Returns an instance of the <see cref="Task"/> representing the execution result.</returns>
         [HttpPost]
         [Route("")]
-        public async Task<Guid> Save(Message message)
+        public async Task<ActionResult> Save([FromBody]Models.Message message)
         {
-            return await this.messageRepository.Save(message);
+            Message domain = new MessageBuilder()
+                .WithData(message.Data)
+                .Build();
+
+            return Ok(await this.messageRepository.Save(domain));
         }
 
         /// <summary>
-        /// Gets the comparison results of both sides messages.
+        /// Gets the comparison results of both messages.
         /// </summary>
         /// <param name="lid">Left side message identification.</param>
         /// <param name="rid">Right side message identification.</param>
         /// <returns>Returns an instance of the <see cref="Task"/> representing the execution result.</returns>
         [HttpGet]
         [Route("{lid}/compare/{rid}")]
-        public async Task<string> Get(Guid lid, Guid rid)
+        public async Task<ActionResult> Compare([FromRoute]Guid lid, [FromRoute]Guid rid)
         {
             Message left = await this.messageRepository.Get(lid);
 
@@ -53,7 +59,7 @@ namespace TechnicalAssessment.WebApi.Controllers
 
             IMessageDomainService domainService = new MessageDomainService();
 
-            return domainService.AnalyzeMessages(left, right);
+            return Ok(domainService.AnalyzeMessages(left, right));
         }
     }
 }

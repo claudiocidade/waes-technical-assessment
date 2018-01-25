@@ -11,9 +11,6 @@ namespace TechnicalAssessment.Tests.DomainServices
     using TechnicalAssessment.Domain.Services;
     using TechnicalAssessment.Domain.Services.Contracts;
 
-    /// <summary>
-    /// A basic test class.
-    /// </summary>
     [TestClass]
     public class MessageDomainServiceTest
     {
@@ -22,7 +19,7 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            string data =
+            const string data =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
@@ -36,11 +33,11 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            string first =
+            const string first =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            string second =
+            const string second =
                 "LTAiGQezNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
@@ -54,7 +51,7 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            string first =
+            const string first =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
@@ -68,11 +65,11 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            string first =
+            const string first =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            string second =
+            const string second =
                 "MTIzMDA3OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxWzOxcm51MTJub2kyMTBuMQ==";
 

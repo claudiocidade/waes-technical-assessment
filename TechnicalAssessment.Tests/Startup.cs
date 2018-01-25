@@ -1,7 +1,7 @@
 ﻿// <copyright file="Startup.cs" company="WAES">
 //  Copyright (c) All rights reserved.
 // </copyright>
-namespace TechnicalAssessment.WebApi
+namespace TechnicalAssessment.Tests
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -26,8 +26,6 @@ namespace TechnicalAssessment.WebApi
         {
             IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
@@ -54,7 +52,7 @@ namespace TechnicalAssessment.WebApi
             services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
 
-            services.AddSingleton(provider => DatabaseClient.Create(this.Configuration.GetConnectionString("Connection")));
+            services.AddSingleton(provider => DatabaseClient.Create("mongodb+srv://admin:admin@cluster0-5snvo.mongodb.net/test"));
         }
 
         /// <summary>
@@ -68,9 +66,6 @@ namespace TechnicalAssessment.WebApi
         {
             app.UsePathBase("/v1");
 
-            loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-            
             app.UseMvc();
         }
     }

@@ -43,11 +43,13 @@ namespace TechnicalAssessment.Data.Repositories
             return session;
         }
 
-        async Task ISessionRepository.Save(Session session)
+        async Task<bool> ISessionRepository.Save(Session session)
         {
             IMongoCollection<Session> collection = GetCollection();
 
             await collection.FindOneAndReplaceAsync(s => s.Id == session.Id, session);
+
+            return true;
         }
 
         private IMongoCollection<Session> GetCollection()

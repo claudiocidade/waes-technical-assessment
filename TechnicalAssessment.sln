@@ -1,19 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.WebApi", "TechnicalAssessment.WebApi\TechnicalAssessment.WebApi.csproj", "{4C990A02-5762-4316-B004-04A28A72E8A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.Tests", "TechnicalAssessment.Tests\TechnicalAssessment.Tests.csproj", "{604B0D3D-2BAF-4DC2-B1F6-3DDAAFEEB372}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.Console", "TechnicalAssessment.Console\TechnicalAssessment.Console.csproj", "{8218B8D4-CAE2-407B-8B47-98EF5597406E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.Data", "TechnicalAssessment.Data\TechnicalAssessment.Data.csproj", "{566AC36E-5B94-4032-A792-52ABF46DF22A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.Domain", "TechnicalAssessment.Domain\TechnicalAssessment.Domain.csproj", "{D4F51C13-BA9D-45F4-88C2-309823AE8812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnicalAssessment.Domain.Services", "TechnicalAssessment.Domain.Services\TechnicalAssessment.Domain.Services.csproj", "{15756A9C-BD36-4812-B95B-C78F4C6D7360}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalAssessment.Domain.Services", "TechnicalAssessment.Domain.Services\TechnicalAssessment.Domain.Services.csproj", "{15756A9C-BD36-4812-B95B-C78F4C6D7360}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{00A4E675-31C1-4E6C-AD97-FCD3360A6AA0}"
+	ProjectSection(SolutionItems) = preProject
+		docker-mongodb-setup.bat = docker-mongodb-setup.bat
+		Dockerfile = Dockerfile
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +34,6 @@ Global
 		{604B0D3D-2BAF-4DC2-B1F6-3DDAAFEEB372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{604B0D3D-2BAF-4DC2-B1F6-3DDAAFEEB372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{604B0D3D-2BAF-4DC2-B1F6-3DDAAFEEB372}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8218B8D4-CAE2-407B-8B47-98EF5597406E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8218B8D4-CAE2-407B-8B47-98EF5597406E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8218B8D4-CAE2-407B-8B47-98EF5597406E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8218B8D4-CAE2-407B-8B47-98EF5597406E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{566AC36E-5B94-4032-A792-52ABF46DF22A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{566AC36E-5B94-4032-A792-52ABF46DF22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{566AC36E-5B94-4032-A792-52ABF46DF22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,5 +49,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FB57BD0-06C7-48B1-95CF-E06975EC945D}
 	EndGlobalSection
 EndGlobal

@@ -3,6 +3,8 @@
 //  </copyright>
 namespace TechnicalAssessment.Domain.Builders
 {
+    using System;
+
     /// <summary>
     /// A domain object builder class for <see cref="Domain.Message"/>.
     /// </summary>
@@ -22,6 +24,15 @@ namespace TechnicalAssessment.Domain.Builders
         /// </summary>
         public MessageBuilder()
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageBuilder"/> class.
+        /// </summary>
+        /// <param name="messageId"><see cref="Message"/> identification.</param>
+        public MessageBuilder(Guid messageId)
+        {
+            this.Result.Id = messageId;
         }
 
         /// <summary>

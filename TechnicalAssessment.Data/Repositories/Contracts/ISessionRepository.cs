@@ -10,6 +10,6 @@ namespace TechnicalAssessment.Data.Repositories.Contracts
     {
         Task<Session> Get(string id);
 
-        Task Save(Session session);
+        Task<bool> Save(Session session);
     }
 }
