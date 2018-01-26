@@ -162,7 +162,7 @@ namespace TechnicalAssessment.Tests.Integration
         }
 
         /// <summary>
-        /// Gets the comparison results between the two sides
+        /// Gets the comparison results between the two sides.
         /// </summary>
         /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
