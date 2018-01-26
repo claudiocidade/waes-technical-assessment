@@ -14,6 +14,9 @@ namespace TechnicalAssessment.Tests.Controllers
     using TechnicalAssessment.WebApi.Configuration;
     using TechnicalAssessment.WebApi.Controllers;
 
+    /// <summary>
+    /// A test class for <see cref="MessageController"/>.
+    /// </summary>
     [TestClass]
     public class MessageControllerTest
     {
@@ -32,7 +35,7 @@ namespace TechnicalAssessment.Tests.Controllers
             
             MessageController controller = new MessageController(repository);
 
-            ActionResult result = await controller.Save(new WebApi.Models.Message() { Data = domain.Data});
+            ActionResult result = await controller.Save(new WebApi.Models.Message() { Data = domain.Data });
 
             result.ShouldBeAssignableTo<OkObjectResult>();
             ((OkObjectResult)result).Value.ToString().ShouldBe(messageId.ToString());

@@ -19,13 +19,25 @@ namespace TechnicalAssessment.Tests.Integration
     using TechnicalAssessment.WebApi.Configuration;
     using TechnicalAssessment.WebApi.Models;
 
+    /// <summary>
+    /// An integration test class for <see cref="Message"/> web api.
+    /// </summary>
     [TestClass]
     public class MessageIntegrationTest
     {
+        /// <summary>
+        /// An instance of the <see cref="TestServer"/> class.
+        /// </summary>
         private readonly TestServer server;
 
+        /// <summary>
+        /// An instance of the <see cref="JsonSerializerSettings"/> class.
+        /// </summary>
         private readonly JsonSerializerSettings jsonSerializerSettings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageIntegrationTest"/> class.
+        /// </summary>
         public MessageIntegrationTest()
         {
             this.jsonSerializerSettings = new JsonSerializerSettings
@@ -39,7 +51,7 @@ namespace TechnicalAssessment.Tests.Integration
         [TestMethod]
         public async Task ShouldSaveMessage()
         {
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -63,7 +75,7 @@ namespace TechnicalAssessment.Tests.Integration
         [TestMethod]
         public async Task ShouldGetSameContentMessageResult()
         {
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -93,7 +105,7 @@ namespace TechnicalAssessment.Tests.Integration
         [TestMethod]
         public async Task ShouldGetDifferentSizesMessageResult()
         {
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -102,15 +114,17 @@ namespace TechnicalAssessment.Tests.Integration
 
             HttpResponseMessage left = await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, "v1/message"), 
-                new StringContent(JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             HttpResponseMessage right = await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, "v1/message"), 
-                new StringContent(JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             Guid leftId, rightId;
 
@@ -129,7 +143,7 @@ namespace TechnicalAssessment.Tests.Integration
         [TestMethod]
         public async Task ShouldGetComparisonMessageResult()
         {
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -138,15 +152,17 @@ namespace TechnicalAssessment.Tests.Integration
 
             HttpResponseMessage left = await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, "v1/message"), 
-                new StringContent(JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             HttpResponseMessage right = await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, "v1/message"), 
-                new StringContent(JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             Guid leftId, rightId;
 

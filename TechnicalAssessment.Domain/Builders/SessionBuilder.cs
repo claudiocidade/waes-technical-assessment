@@ -57,7 +57,6 @@ namespace TechnicalAssessment.Domain.Builders
         /// <param name="instance">An instance of the building type.</param>
         protected override void ValidateBeforeBuilding(Session instance)
         {
-
         }
     }
 }

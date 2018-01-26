@@ -17,6 +17,9 @@ namespace TechnicalAssessment.Tests.Integration
     using TechnicalAssessment.WebApi.Configuration;
     using TechnicalAssessment.WebApi.Models;
 
+    /// <summary>
+    /// An integration test class for <see cref="Domain.Session"/> web api.
+    /// </summary>
     [TestClass]
     public class SessionIntegrationTest
     {
@@ -39,7 +42,7 @@ namespace TechnicalAssessment.Tests.Integration
         {
             Guid sessionId = Guid.NewGuid();
 
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -61,7 +64,7 @@ namespace TechnicalAssessment.Tests.Integration
         {
             Guid sessionId = Guid.NewGuid();
 
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -83,7 +86,7 @@ namespace TechnicalAssessment.Tests.Integration
         {
             Guid sessionId = Guid.NewGuid();
 
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -107,7 +110,7 @@ namespace TechnicalAssessment.Tests.Integration
         {
             Guid sessionId = Guid.NewGuid();
 
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -116,15 +119,17 @@ namespace TechnicalAssessment.Tests.Integration
 
             await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}/left"), 
-                new StringContent(JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}/right"), 
-                new StringContent(JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             HttpResponseMessage compare = await client.GetAsync(new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}"));
 
@@ -136,7 +141,7 @@ namespace TechnicalAssessment.Tests.Integration
         {
             Guid sessionId = Guid.NewGuid();
 
-            HttpClient client = server.CreateClient();
+            HttpClient client = this.server.CreateClient();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -145,15 +150,17 @@ namespace TechnicalAssessment.Tests.Integration
 
             await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}/left"), 
-                new StringContent(JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(leftMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             await client.PostAsync(
                 new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}/right"), 
-                new StringContent(JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
-                Encoding.UTF8, 
-                "application/json"));
+                new StringContent(
+                    JsonConvert.SerializeObject(rightMessage, Formatting.None, this.jsonSerializerSettings), 
+                    Encoding.UTF8, 
+                    "application/json"));
 
             HttpResponseMessage compare = await client.GetAsync(new Uri(ApplicationConstants.ServiceUri, $"v1/diff/{sessionId}"));
 

@@ -1,4 +1,4 @@
-// <copyright file="SessionRepositoryTest.cs" company="WAES">
+// <copyright file="DiffControllerTest.cs" company="WAES">
 //  Copyright (c) All rights reserved.
 // </copyright>
 namespace TechnicalAssessment.Tests.Controllers
@@ -14,6 +14,9 @@ namespace TechnicalAssessment.Tests.Controllers
     using TechnicalAssessment.WebApi.Configuration;
     using TechnicalAssessment.WebApi.Controllers;
 
+    /// <summary>
+    /// A test class for <see cref="DiffController"/>.
+    /// </summary>
     [TestClass]
     public class DiffControllerTest
     {

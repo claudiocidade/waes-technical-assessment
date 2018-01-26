@@ -6,8 +6,14 @@ namespace TechnicalAssessment.Domain
     using System;
     using MongoDB.Bson.Serialization.Attributes;
 
+    /// <summary>
+    /// Represents a binary carrier message.
+    /// </summary>
     public class Message
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Message"/> class.
+        /// </summary>
         protected internal Message()
         {    
         }

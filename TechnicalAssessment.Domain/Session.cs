@@ -3,15 +3,25 @@
 // </copyright>
 namespace TechnicalAssessment.Domain
 {
+    /// <summary>
+    /// Represents a session containing two messages to be compared.
+    /// </summary>
     public class Session
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Session"/> class.
+        /// </summary>
         protected internal Session()
         {
         }
-
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Session"/> class.
+        /// </summary>
+        /// <param name="id"><see cref="Session"/> identification.</param>
         protected internal Session(string id)
         {
-            Id = id;
+            this.Id = id;
         }
 
         public string Id { get; protected internal set; }

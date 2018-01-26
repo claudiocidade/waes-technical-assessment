@@ -20,8 +20,15 @@ namespace TechnicalAssessment.WebApi.Controllers
     [Route("diff")]
     public class DiffController : Controller
     {
+        /// <summary>
+        /// An instance of the <see cref="ISessionRepository"/> implementation class.
+        /// </summary>
         private readonly ISessionRepository sessionRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DiffController"/> class.
+        /// </summary>
+        /// <param name="sessionRepository">An instance of the <see cref="ISessionRepository"/> implementation class.</param>
         public DiffController(ISessionRepository sessionRepository)
         {
             this.sessionRepository = sessionRepository;
@@ -43,7 +50,7 @@ namespace TechnicalAssessment.WebApi.Controllers
 
             await this.sessionRepository.Save(sessionBuilder.Build());
 
-            return Ok(true);
+            return this.Ok(true);
         }
 
         /// <summary>
@@ -62,7 +69,7 @@ namespace TechnicalAssessment.WebApi.Controllers
 
             await this.sessionRepository.Save(sessionBuilder.Build());
 
-            return Ok(true);
+            return this.Ok(true);
         }
 
         /// <summary>
@@ -78,7 +85,7 @@ namespace TechnicalAssessment.WebApi.Controllers
 
             IMessageDomainService messageDomainService = new MessageDomainService();
 
-            return Ok(messageDomainService.AnalyzeMessages(existingSession.LeftSide, existingSession.RightSide));
+            return this.Ok(messageDomainService.AnalyzeMessages(existingSession.LeftSide, existingSession.RightSide));
         }
     }
 }

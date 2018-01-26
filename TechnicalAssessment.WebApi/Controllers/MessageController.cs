@@ -1,4 +1,4 @@
-// <copyright file="DiffController.cs" company="WAES">
+// <copyright file="MessageController.cs" company="WAES">
 //  Copyright (c) All rights reserved.
 // </copyright>
 namespace TechnicalAssessment.WebApi.Controllers
@@ -20,8 +20,15 @@ namespace TechnicalAssessment.WebApi.Controllers
     [Route("message")]
     public class MessageController : Controller
     {
+        /// <summary>
+        /// An instance of the <see cref="IMessageRepository"/> implementation class.
+        /// </summary>
         private readonly IMessageRepository messageRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageController"/> class.
+        /// </summary>
+        /// <param name="messageRepository">An instance of the <see cref="IMessageRepository"/> implementation class.</param>
         public MessageController(IMessageRepository messageRepository)
         {
             this.messageRepository = messageRepository;
@@ -40,7 +47,7 @@ namespace TechnicalAssessment.WebApi.Controllers
                 .WithData(message.Data)
                 .Build();
 
-            return Ok(await this.messageRepository.Save(domain));
+            return this.Ok(await this.messageRepository.Save(domain));
         }
 
         /// <summary>
@@ -59,7 +66,7 @@ namespace TechnicalAssessment.WebApi.Controllers
 
             IMessageDomainService domainService = new MessageDomainService();
 
-            return Ok(domainService.AnalyzeMessages(left, right));
+            return this.Ok(domainService.AnalyzeMessages(left, right));
         }
     }
 }

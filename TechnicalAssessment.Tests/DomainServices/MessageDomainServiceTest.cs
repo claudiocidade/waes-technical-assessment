@@ -11,6 +11,9 @@ namespace TechnicalAssessment.Tests.DomainServices
     using TechnicalAssessment.Domain.Services;
     using TechnicalAssessment.Domain.Services.Contracts;
 
+    /// <summary>
+    /// A test class for <see cref="MessageDomainService"/>.
+    /// </summary>
     [TestClass]
     public class MessageDomainServiceTest
     {
@@ -19,11 +22,11 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            const string data =
+            const string Data =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            Session session = this.CreateTestSession(data, data);
+            Session session = this.CreateTestSession(Data, Data);
 
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Content is the same");
         }
@@ -33,15 +36,15 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            const string first =
+            const string First =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            const string second =
+            const string Second =
                 "LTAiGQezNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            Session session = this.CreateTestSession(first, second);
+            Session session = this.CreateTestSession(First, Second);
 
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Sizes are different");
         }
@@ -51,11 +54,11 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            const string first =
+            const string First =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            Session session = this.CreateTestSession(first, string.Empty);
+            Session session = this.CreateTestSession(First, string.Empty);
 
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Session must have both sides");
         }
@@ -65,15 +68,15 @@ namespace TechnicalAssessment.Tests.DomainServices
         {
             IMessageDomainService domainService = new MessageDomainService();
 
-            const string first =
+            const string First =
                 "MTIzNDU2OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxYnUxcm51MTJub2kyMTBuMQ==";
 
-            const string second =
+            const string Second =
                 "MTIzMDA3OGtqbmFzbG5rYWZza25sc2FrbGZzbmtsZnNhbnNmYW5sZn" +
                 "NhbmxvaXdqaTIxNDIxb2lqNDI4OXUyaDIxWzOxcm51MTJub2kyMTBuMQ==";
 
-            Session session = this.CreateTestSession(first, second);
+            Session session = this.CreateTestSession(First, Second);
 
             string result = domainService.AnalyzeMessages(session.LeftSide, session.RightSide);
 

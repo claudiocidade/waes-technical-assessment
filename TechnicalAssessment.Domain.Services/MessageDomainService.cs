@@ -1,4 +1,4 @@
-﻿//  <copyright file="MessageDataAnalyzer.cs" company="Personow">
+﻿//  <copyright file="MessageDomainService.cs" company="WAES">
 //  Copyright (c) All rights reserved.
 //  </copyright>
 namespace TechnicalAssessment.Domain.Services
@@ -8,12 +8,23 @@ namespace TechnicalAssessment.Domain.Services
     using System.Text;
     using TechnicalAssessment.Domain.Services.Contracts;
 
+    /// <summary>
+    /// Manages <see cref="Message"/> domain logic implementation.
+    /// </summary>
     public class MessageDomainService : IMessageDomainService
     {
+        /// <summary>
+        /// Analyzes the messages and provide comparison diagnostics.
+        /// </summary>
+        /// <param name="left">Left side message.</param>
+        /// <param name="right">Right side message.</param>
+        /// <returns>A string containing information about the comparison process.</returns>
         string IMessageDomainService.AnalyzeMessages(Message left, Message right)
         {
             if (left == null || right == null)
+            {
                 return "Session must have both sides";
+            }
 
             byte[] leftSide = Convert.FromBase64String(left.Data);
 
@@ -48,7 +59,9 @@ namespace TechnicalAssessment.Domain.Services
                     else
                     {
                         if (diffStart >= 0)
+                        {
                             diffEnd = i;
+                        }
                     }
 
                     if (diffStart >= 0 && diffEnd >= 0)

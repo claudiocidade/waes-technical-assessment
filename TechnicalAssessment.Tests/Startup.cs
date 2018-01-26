@@ -26,6 +26,7 @@ namespace TechnicalAssessment.Tests
         {
             IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
 
             this.Configuration = builder.Build();
@@ -52,7 +53,7 @@ namespace TechnicalAssessment.Tests
             services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
 
-            services.AddSingleton(provider => DatabaseClient.Create("mongodb+srv://admin:admin@cluster0-5snvo.mongodb.net/test"));
+            services.AddSingleton(provider => DatabaseClient.Create(this.Configuration.GetSection("connectionStrings")["Connection"]));
         }
 
         /// <summary>
