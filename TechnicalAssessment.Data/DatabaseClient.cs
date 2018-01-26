@@ -10,6 +10,11 @@ namespace TechnicalAssessment.Data
     /// </summary>
     public class DatabaseClient
     {
+        /// <summary>
+        /// Creates a new instance of a <see cref="MongoClient"/> using the provided connection string.
+        /// </summary>
+        /// <param name="connectionString">Database connection string.</param>
+        /// <returns>An instance of the <see cref="MongoClient"/> class.</returns>
         public static MongoClient Create(string connectionString)
         {
             return new MongoClient(connectionString);

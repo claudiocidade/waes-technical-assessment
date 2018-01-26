@@ -17,6 +17,9 @@ namespace TechnicalAssessment.Tests.DomainServices
     [TestClass]
     public class MessageDomainServiceTest
     {
+        /// <summary>
+        /// Both messages should have the same content.
+        /// </summary>
         [TestMethod]
         public void ShouldHaveSameContent()
         {
@@ -31,6 +34,9 @@ namespace TechnicalAssessment.Tests.DomainServices
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Content is the same");
         }
 
+        /// <summary>
+        /// Messages should have different sizes.
+        /// </summary>
         [TestMethod]
         public void ShouldHaveDifferentSizes()
         {
@@ -49,6 +55,9 @@ namespace TechnicalAssessment.Tests.DomainServices
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Sizes are different");
         }
 
+        /// <summary>
+        /// Session should have both sides uploaded before comparison.
+        /// </summary>
         [TestMethod]
         public void ShouldHaveBothSides()
         {
@@ -63,6 +72,9 @@ namespace TechnicalAssessment.Tests.DomainServices
             domainService.AnalyzeMessages(session.LeftSide, session.RightSide).ShouldBe("Session must have both sides");
         }
 
+        /// <summary>
+        /// Messages have different sizes.
+        /// </summary>
         [TestMethod]
         public void ShouldHaveDifferencesDetected()
         {
@@ -84,6 +96,12 @@ namespace TechnicalAssessment.Tests.DomainServices
             result.ShouldContain("Differences found starting at 66 ending at 68");
         }
 
+        /// <summary>
+        /// Creates an instance of a session to be used during the tests.
+        /// </summary>
+        /// <param name="leftSideData">Data for the left side.</param>
+        /// <param name="rightSideData">Data for the right side.</param>
+        /// <returns>The instance of the test session.</returns>
         private Session CreateTestSession(string leftSideData, string rightSideData)
         {
             SessionBuilder sessionBuilder = new SessionBuilder(Guid.NewGuid().ToString());

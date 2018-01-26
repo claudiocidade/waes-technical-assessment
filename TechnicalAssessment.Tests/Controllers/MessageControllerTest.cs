@@ -20,6 +20,10 @@ namespace TechnicalAssessment.Tests.Controllers
     [TestClass]
     public class MessageControllerTest
     {
+        /// <summary>
+        /// Should save a new message and return the ID.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessage()
         {
@@ -41,6 +45,10 @@ namespace TechnicalAssessment.Tests.Controllers
             ((OkObjectResult)result).Value.ToString().ShouldBe(messageId.ToString());
         }
 
+        /// <summary>
+        /// Both messages should have the same content.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetSameContentMessageResult()
         {
@@ -69,6 +77,10 @@ namespace TechnicalAssessment.Tests.Controllers
             ((OkObjectResult)result).Value.ShouldBe("Content is the same");
         }
 
+        /// <summary>
+        /// Messages should have different sizes.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetDifferentSizesMessageResult()
         {
@@ -97,6 +109,10 @@ namespace TechnicalAssessment.Tests.Controllers
             ((OkObjectResult)result).Value.ShouldBe("Sizes are different");
         }
 
+        /// <summary>
+        /// A message describing the differences between both files is expected.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetMessageResult()
         {

@@ -72,6 +72,10 @@ namespace TechnicalAssessment.Data.Repositories
             return true;
         }
 
+        /// <summary>
+        /// Gets a collection from the selected mongo database.
+        /// </summary>
+        /// <returns>An instance of the collection representation class.</returns>
         private IMongoCollection<Session> GetCollection()
         {
             IMongoDatabase db = this.client.GetDatabase("waes");

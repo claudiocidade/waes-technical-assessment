@@ -23,10 +23,19 @@ namespace TechnicalAssessment.Tests.Integration
     [TestClass]
     public class SessionIntegrationTest
     {
+        /// <summary>
+        /// An instance of the <see cref="TestServer"/> class.
+        /// </summary>
         private readonly TestServer server;
 
+        /// <summary>
+        /// An instance of the <see cref="JsonSerializerSettings"/> class.
+        /// </summary>
         private readonly JsonSerializerSettings jsonSerializerSettings;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SessionIntegrationTest"/> class.
+        /// </summary>
         public SessionIntegrationTest()
         {
             this.jsonSerializerSettings = new JsonSerializerSettings
@@ -37,6 +46,10 @@ namespace TechnicalAssessment.Tests.Integration
             this.server = new TestServer(new WebHostBuilder().UseStartup<Tests.Startup>());
         }
 
+        /// <summary>
+        /// Should save a single message to the session left side.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessageLeft()
         {
@@ -59,6 +72,10 @@ namespace TechnicalAssessment.Tests.Integration
             result.ShouldContain("true");
         }
 
+        /// <summary>
+        /// Should save a single message to the session right side.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessageRight()
         {
@@ -81,6 +98,10 @@ namespace TechnicalAssessment.Tests.Integration
             result.ShouldContain("true");
         }
 
+        /// <summary>
+        /// Both messages should have the same content.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetSameContentMessageResult()
         {
@@ -105,6 +126,10 @@ namespace TechnicalAssessment.Tests.Integration
             (await compare.Content.ReadAsStringAsync()).Replace(@"""", string.Empty).ShouldBe("Content is the same");
         }
 
+        /// <summary>
+        /// Both messages should have different sizes.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetDifferentSizesMessageResult()
         {
@@ -136,6 +161,10 @@ namespace TechnicalAssessment.Tests.Integration
             (await compare.Content.ReadAsStringAsync()).Replace(@"""", string.Empty).ShouldBe("Sizes are different");
         }
 
+        /// <summary>
+        /// Gets the comparison results between the two sides
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetComparisonMessageResult()
         {

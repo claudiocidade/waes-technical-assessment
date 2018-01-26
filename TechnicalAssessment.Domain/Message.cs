@@ -18,9 +18,15 @@ namespace TechnicalAssessment.Domain
         {    
         }
 
+        /// <summary>
+        /// Gets or sets the message identification.
+        /// </summary>
         [BsonId]
         public Guid Id { get; protected internal set; }
 
+        /// <summary>
+        /// Gets or sets the base 64 encoded data for this message.
+        /// </summary>
         public string Data { get; protected internal set; }
 
         /// <summary>

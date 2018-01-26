@@ -24,10 +24,19 @@ namespace TechnicalAssessment.Domain
             this.Id = id;
         }
 
+        /// <summary>
+        /// Gets or sets the session identification.
+        /// </summary>
         public string Id { get; protected internal set; }
 
+        /// <summary>
+        /// Gets or sets the session left side message.
+        /// </summary>
         public Message LeftSide { get; protected internal set; }
 
+        /// <summary>
+        /// Gets or sets the session right side message.
+        /// </summary>
         public Message RightSide { get; protected internal set; }
 
         /// <summary>

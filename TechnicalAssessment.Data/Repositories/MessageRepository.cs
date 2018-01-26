@@ -10,7 +10,6 @@ namespace TechnicalAssessment.Data.Repositories
     using MongoDB.Driver;
     using TechnicalAssessment.Data.Repositories.Contracts;
     using TechnicalAssessment.Domain;
-    using TechnicalAssessment.Domain.Builders;
 
     /// <summary>
     /// A <see cref="Message"/> repository.
@@ -31,6 +30,11 @@ namespace TechnicalAssessment.Data.Repositories
             this.client = client;
         }
 
+        /// <summary>
+        /// Gets an existing <see cref="Message"/> by identification. 
+        /// </summary>
+        /// <param name="id"><see cref="Message"/> identification.</param>
+        /// <returns>An existing <see cref="Message"/>.</returns>
         async Task<Message> IMessageRepository.Get(Guid id)
         {
             IMongoCollection<Message> collection = this.GetCollection();
@@ -49,6 +53,11 @@ namespace TechnicalAssessment.Data.Repositories
             }
         }
 
+        /// <summary>
+        /// Saves a new <see cref="Message"/>.
+        /// </summary>
+        /// <param name="message">An instance of the <see cref="Message"/> to be saved.</param>
+        /// <returns>The newly saved <see cref="Message"/> identification.</returns>
         async Task<Guid> IMessageRepository.Save(Message message)
         {
             IMongoCollection<Message> collection = this.GetCollection();
@@ -58,6 +67,10 @@ namespace TechnicalAssessment.Data.Repositories
             return message.Id;
         }
 
+        /// <summary>
+        /// Gets a collection from the selected mongo database.
+        /// </summary>
+        /// <returns>An instance of the collection representation class.</returns>
         private IMongoCollection<Message> GetCollection()
         {
             IMongoDatabase db = this.client.GetDatabase("waes");

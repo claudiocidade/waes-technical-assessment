@@ -48,6 +48,10 @@ namespace TechnicalAssessment.Tests.Integration
             this.server = new TestServer(new WebHostBuilder().UseStartup<Tests.Startup>());
         }
 
+        /// <summary>
+        /// Should save a message using the API.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessage()
         {
@@ -72,6 +76,10 @@ namespace TechnicalAssessment.Tests.Integration
             insertId.ShouldNotBe(default(Guid));
         }
 
+        /// <summary>
+        /// Should save two messages with the same content.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetSameContentMessageResult()
         {
@@ -102,6 +110,10 @@ namespace TechnicalAssessment.Tests.Integration
             (await compare.Content.ReadAsStringAsync()).Replace(@"""", string.Empty).ShouldBe("Content is the same");
         }
 
+        /// <summary>
+        /// Should save two messages with different sizes.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetDifferentSizesMessageResult()
         {
@@ -140,6 +152,10 @@ namespace TechnicalAssessment.Tests.Integration
             (await compare.Content.ReadAsStringAsync()).Replace(@"""", string.Empty).ShouldBe("Sizes are different");
         }
 
+        /// <summary>
+        /// Should get the comparison between two existing messages.
+        /// </summary>
+        /// <returns>An instance of the <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetComparisonMessageResult()
         {

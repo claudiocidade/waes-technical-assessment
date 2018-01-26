@@ -20,6 +20,10 @@ namespace TechnicalAssessment.Tests.Controllers
     [TestClass]
     public class DiffControllerTest
     {
+        /// <summary>
+        /// Saving a message in the left side of the session should pass.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessageToSessionLeftSide()
         {
@@ -36,6 +40,10 @@ namespace TechnicalAssessment.Tests.Controllers
             result.ShouldBeAssignableTo<OkObjectResult>();
         }
 
+        /// <summary>
+        /// Saving a message in the right side of the session should pass.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldSaveMessageToSessionRightSide()
         {
@@ -52,6 +60,10 @@ namespace TechnicalAssessment.Tests.Controllers
             result.ShouldBeAssignableTo<OkObjectResult>();
         }
 
+        /// <summary>
+        /// Both messages in a session should have the same content.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetSameContentMessageResult()
         {
@@ -76,6 +88,10 @@ namespace TechnicalAssessment.Tests.Controllers
             ((OkObjectResult)result).Value.ShouldBe("Content is the same");
         }
 
+        /// <summary>
+        /// Both messages in a session should have different sizes.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetDifferentSizesMessageResult()
         {
@@ -102,6 +118,10 @@ namespace TechnicalAssessment.Tests.Controllers
             ((OkObjectResult)result).Value.ShouldBe("Sizes are different");
         }
 
+        /// <summary>
+        /// A message describing the differences between both files is expected.
+        /// </summary>
+        /// <returns>An instance of the assynchronous <see cref="Task"/>.</returns>
         [TestMethod]
         public async Task ShouldGetMessageResult()
         {
